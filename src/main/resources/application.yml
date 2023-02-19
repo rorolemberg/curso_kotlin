@@ -1,0 +1,7 @@
+micronaut:
+  application:
+    name: clienteServer
+netty:
+  default:
+    allocator:
+      max-order: 3

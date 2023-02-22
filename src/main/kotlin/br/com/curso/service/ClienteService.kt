@@ -3,6 +3,8 @@ package br.com.curso.service
 import br.com.curso.exception.RegistroNaoEncontradoException
 import br.com.curso.model.Cliente
 import br.com.curso.repository.ClienteRepository
+import io.micronaut.data.model.Page
+import io.micronaut.data.model.Pageable
 import io.micronaut.http.annotation.*
 import jakarta.inject.Singleton
 import javax.transaction.Transactional
@@ -15,8 +17,14 @@ open class ClienteService (
             return clienteRepository.save(cliente)
         }
 
-        fun findAll():List<Cliente>{
-            return clienteRepository.findAll()
+        fun findAll(nome: String?, pageable: Pageable): Page<Cliente> {
+            var clientes = if (nome==null) {
+                clienteRepository.findAll(pageable)
+            } else {
+                clienteRepository.findByNome(nome, pageable)
+            }
+            return clientes
+
         }
 
         fun findById(id:Long): Cliente {

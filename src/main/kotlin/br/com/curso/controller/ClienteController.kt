@@ -3,6 +3,8 @@ package br.com.curso.controller
 import br.com.curso.model.Cliente
 import br.com.curso.repository.ClienteRepository
 import br.com.curso.service.ClienteService
+import io.micronaut.data.model.Page
+import io.micronaut.data.model.Pageable
 import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Delete
@@ -10,6 +12,7 @@ import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.PathVariable
 import io.micronaut.http.annotation.Post
 import io.micronaut.http.annotation.Put
+import io.micronaut.http.annotation.QueryValue
 import java.net.http.HttpResponse
 import javax.transaction.Transactional
 
@@ -25,8 +28,8 @@ class ClienteController(
     }
 
     @Get
-    fun findAll():List<Cliente>{
-        return clienteService.findAll()
+    fun findAll(@QueryValue nome: String?, pageable: Pageable): Page<Cliente> {
+        return clienteService.findAll(nome, pageable)
     }
 
     @Get("/{id}")

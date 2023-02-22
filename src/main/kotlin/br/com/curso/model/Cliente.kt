@@ -10,7 +10,7 @@ data class Cliente(
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         val id: Long,
-        val nome: String,
-        val documento: String,
-        val endereco: String
+        var nome: String,
+        var documento: String,
+        var endereco: String
 )

@@ -1,6 +1,9 @@
 package br.com.curso
 
-import io.micronaut.runtime.Micronaut.run
+import io.micronaut.runtime.Micronaut.*
 fun main(args: Array<String>) {
-	run(*args)
+	build()
+			.args(*args)
+			.packages("br.com.curso")
+			.start()
 }

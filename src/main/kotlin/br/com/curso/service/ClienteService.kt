@@ -47,4 +47,9 @@ open class ClienteService (
             clienteRepository.save(clienteDB)
         }
 
+        fun listar(nome: String?): List<Cliente>{
+            return clienteRepository.listarComImplementacao(nome)
+        }
+
+
 }
